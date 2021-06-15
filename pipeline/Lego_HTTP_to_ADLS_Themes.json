@@ -1,0 +1,88 @@
+{
+	"name": "Lego_HTTP_to_ADLS_Themes",
+	"properties": {
+		"description": "Copy themes.csv.gz from Rebrickable to Azure Data Lake Storage",
+		"activities": [
+			{
+				"name": "Copy Themes from HTTP to ADLS",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "themes.csv.gz"
+					},
+					{
+						"name": "Destination",
+						"value": "lego//themes.csv"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"skipLineCount": 0
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"parallelCopies": 1,
+					"enableSkipIncompatibleRow": true,
+					"logSettings": {
+						"enableCopyActivityLog": true,
+						"copyActivityLogSettings": {
+							"logLevel": "Warning",
+							"enableReliableLogging": false
+						},
+						"logLocationSettings": {
+							"linkedServiceName": {
+								"referenceName": "ABLB_ppblob",
+								"type": "LinkedServiceReference"
+							},
+							"path": "lego/errors/themes"
+						}
+					},
+					"dataIntegrationUnits": 2
+				},
+				"inputs": [
+					{
+						"referenceName": "HTTP_Lego_Themes",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ADLS_lego_Themes",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"concurrency": 1,
+		"annotations": [],
+		"lastPublishTime": "2021-06-11T02:05:50Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

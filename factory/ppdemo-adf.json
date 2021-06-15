@@ -1,0 +1,9 @@
+{
+	"name": "ppdemo-adf",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "8091eb52-bfe5-4994-ad7d-8e42516371c5",
+		"tenantId": "31d5acce-99ba-40b7-b2a1-f329e04fe742"
+	}
+}

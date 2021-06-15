@@ -1,0 +1,32 @@
+{
+	"name": "Lego_Themes",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ADLS_lego_Themes",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ASQL_Lego_Themes",
+						"type": "DatasetReference"
+					},
+					"name": "ASQLLegoThemes"
+				}
+			],
+			"transformations": [
+				{
+					"name": "AddLoadDate"
+				}
+			],
+			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 derive(load_date = currentDate()) ~> AddLoadDate\nAddLoadDate sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> ASQLLegoThemes"
+		}
+	}
+}

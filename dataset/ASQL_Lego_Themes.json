@@ -1,0 +1,17 @@
+{
+	"name": "ASQL_Lego_Themes",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ASQL_ppazsql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "lego",
+			"table": "themes"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
