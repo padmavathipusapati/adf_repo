@@ -1,0 +1,7 @@
+{
+	"name": "PadmaLaptopintegrationRuntime",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "Self-hosted integration runtime running on Padma's laptop"
+	}
+}
