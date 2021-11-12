@@ -1,0 +1,9 @@
+{
+	"name": "ppadfdevdemo",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "4274ff4b-40cc-4284-a4d0-ad0da846c347",
+		"tenantId": "31d5acce-99ba-40b7-b2a1-f329e04fe742"
+	}
+}
